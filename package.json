@@ -1,0 +1,41 @@
+{
+  "name": "vuejs",
+  "version": "1.0.0",
+  "description": "Digging one step at a time into Vue JS",
+  "dependencies": {
+    "express": "^4.16.3",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.2.2",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "vue-loader": "^14.2.1",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^3.5.5",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.18.2"
+  },
+  "scripts": {
+    "build": "node ./node_modules/webpack/bin/webpack --config ./build/webpack.base.config.js",
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kesavasreeram/vuejs.git"
+  },
+  "keywords": [],
+  "author": "Kesava Sreeram",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kesavasreeram/vuejs/issues"
+  },
+  "homepage": "https://github.com/kesavasreeram/vuejs#readme"
+}
