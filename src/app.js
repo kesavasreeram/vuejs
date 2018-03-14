@@ -25,7 +25,12 @@ const app = new Vue({
             // ex: this.name to access the name property within the data object.
             return 'func1 was called'
         }
-    }
+    },
+    template: `<div id="app">
+        <h1>{{name}}</h1>
+        <h1>{{func1()}}</h1>
+        <a href="website">Facebook</a>
+      </div>`
 }); // creating a vue instance.
 
 // Now export the app variable object in JSON export so that it will be accessible to other files

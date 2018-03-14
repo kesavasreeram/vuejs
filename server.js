@@ -1,7 +1,7 @@
 const express = require('express');          // for express server
 const fs = require('fs');                    // for file system
 const path = require('path');
-const server = express();
+const expressServer = express();
 
 const indexHTML = (() => {
   // path.resolve returns the directory relative to this file and runs the server from that location
@@ -9,14 +9,16 @@ const indexHTML = (() => {
   return fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf-8');
 })();
 
-server.use('/dist', express.static(path.resolve(__dirname, './dist')));
+expressServer.use('/dist', express.static(path.resolve(__dirname, './dist')));
 
-server.get('*', (request, response) => {
+require('./build/dev-server')(expressServer);
+
+expressServer.get('*', (request, response) => {
   response.write(indexHTML);
   response.end();
 });
 
 const port = process.env.PORT || 3000;
-server.listen(port, () => {
+expressServer.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);
 });

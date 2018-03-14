@@ -6,3 +6,7 @@ import { app } from './app';
 // . is used for selecting elements by class. In case of class only first element of the class name
 // is selected
 app.$mount('#app');
+
+if(module.hot) {
+  module.hot.accept();
+}
