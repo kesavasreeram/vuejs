@@ -1,0 +1,29 @@
+{
+  "name": "vuejs",
+  "version": "1.0.0",
+  "description": "Digging one step at a time into Vue JS",
+  "dependencies": {
+    "express": "^4.16.3",
+    "vue": "^2.5.15"
+  },
+  "devDependencies": {
+    "webpack": "^3.5.5",
+    "webpack-cli": "^2.0.11"
+  },
+  "scripts": {
+    "build": "node ./node_modules/webpack/bin/webpack --config ./build/webpack.base.config.js",
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kesavasreeram/vuejs.git"
+  },
+  "keywords": [],
+  "author": "Kesava Sreeram",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kesavasreeram/vuejs/issues"
+  },
+  "homepage": "https://github.com/kesavasreeram/vuejs#readme"
+}
