@@ -15,7 +15,11 @@ const config = {
       },
       { // this rule is used to parse .vue files
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          css: 'css-loader',
+          scss: 'css-loader | sass-loader'
+        }
       },
       {
         test: /\.js$/, // notice that we are not adding the .vue extension here, the reason is .vue files will be trasnpiled
