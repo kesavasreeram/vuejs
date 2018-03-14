@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import AppLayout from './theme/Layout.vue' // within the import statement you are providing an alias for the vue component you are importing
+// in this files, the component within Layout.vue is aliased as AppLayout
 
 // // What does the following statement do?
 // // Vue instance will control a part or the whole application. The object which is being passed as the variable
@@ -28,35 +30,39 @@ import Vue from 'vue'
 //   template: `<app-component></app-component>`
 // }) // creating a vue instance.
 
-// we can declare a component in vue using Vue.component followed by the component name and structure of the component
-Vue.component('app', {
-  template: `
-    <div id="app">
-      <nav class="nav has-shadow">
-        <div class="container">
-          <a href="/">
-            <img src="http://bit.ly/vue-img"
-              alt="Vue SPA" />
-          </a>
-        </div>
-      </nav>
-      <section class="main-section section"></section>
-      <footer class="footer">
-        <div class="container">
-          <div class="content has-text-centered">
-            Follow us on
-            <a href="https://twitter.com"
-            target="_blank">Twitter</a>
-          </div>
-        </div>
-      </footer>
-    </div>
-  `
-})
+// // we can declare a component in vue using Vue.component followed by the component name and structure of the component
+// Vue.component('app', {
+//   template: `
+//     <div id="app">
+//       <nav class="nav has-shadow">
+//         <div class="container">
+//           <a href="/">
+//             <img src="http://bit.ly/vue-img"
+//               alt="Vue SPA" />
+//           </a>
+//         </div>
+//       </nav>
+//       <section class="main-section section"></section>
+//       <footer class="footer">
+//         <div class="container">
+//           <div class="content has-text-centered">
+//             Follow us on
+//             <a href="https://twitter.com"
+//             target="_blank">Twitter</a>
+//           </div>
+//         </div>
+//       </footer>
+//     </div>
+//   `
+// })
+
+// const app = new Vue({
+//   render: h => h('app') // vue js property that will return an element. Here we want to return appComponent
+//   // this render function will be similar to using ` template: '<app></app>' `
+// })
 
 const app = new Vue({
-  render: h => h('app') // vue js property that will return an element. Here we want to return appComponent
-  // this render function will be similar to using ` template: '<app></app>' `
+  render: h => h(AppLayout)
 })
 
 // Now export the app variable object in JSON export so that it will be accessible to other files
