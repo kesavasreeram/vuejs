@@ -61,8 +61,17 @@ import AppLayout from './theme/Layout.vue' // within the import statement you ar
 //   // this render function will be similar to using ` template: '<app></app>' `
 // })
 
+// const app = new Vue({
+//   render: h => h(AppLayout)
+// })
+
+// once we start implementing the .vue files, there is no need to use the render function explicitly
+// render is alread available within the .vue file. So you can use spread syntax as below
+// however that doesnt automatically do the same thing as render as most of the ES6 functionality are not
+// suitable or supported in all loaders. So lets try to use babel transpiler and its dependencies, and update webpack base config file
+
 const app = new Vue({
-  render: h => h(AppLayout)
+  ...AppLayout
 })
 
 // Now export the app variable object in JSON export so that it will be accessible to other files

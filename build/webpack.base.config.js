@@ -16,6 +16,12 @@ const config = {
       { // this rule is used to parse .vue files
         test: /\.vue$/,
         loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/, // notice that we are not adding the .vue extension here, the reason is .vue files will be trasnpiled
+        // to .js files by vue-loader.
+        loader: 'babel-loader',
+        exclude: /node_modules/
       }
     ]
   },

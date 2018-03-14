@@ -1,5 +1,6 @@
 module.exports = {
   root: true,                       // parent scope of the elint rules
+  parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module'
   },
