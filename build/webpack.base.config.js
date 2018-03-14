@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 const config = {
   entry: {
@@ -25,6 +25,6 @@ const config = {
     publicPath: '/',
     filename: 'assets/js/[name].js'
   }
-};
+}
 
-module.exports = config;
+module.exports = config
