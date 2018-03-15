@@ -18,8 +18,17 @@
       <!-- for example consider /about and /about/contact . In this case if you havent used the 'exact' attribute -->
       <!-- both /about and /about/contact are considered as active routes when /about/contact is selected and -->
       <!-- displays the content of the route depending on which route is resolved at the end. Which is not desirable -->
-      <router-link class="navbar-item is-tab" to="/category/front-end" exact>Front-end</router-link>
-      <router-link class="navbar-item is-tab" to="/category/mobile" exact>Mobile</router-link>
+
+      <!-- <router-link class="navbar-item is-tab" to="/category/front-end" exact>Front-end</router-link>
+      <router-link class="navbar-item is-tab" to="/category/mobile" exact>Mobile</router-link> -->
+
+      <!-- taking advantage of 'exact' is good in case of static routes, but that is not always the case. -->
+      <!-- we will come across route using query parameters, which are dynamic and accounting for all the usecases -->
+      <!-- is not easy if you want to stick with 'exact'. So we need more symantic access to the routes -->
+      <!-- we can achieve this by passing objetc to the route and let the vue js parse the 'to' attribute -->
+      <!-- by add ':' infront of 'to' attribute. -->
+      <router-link class="navbar-item is-tab" :to="{ name: 'category', params: { id: 'front-end' } }" exact>Front-end</router-link>
+      <router-link class="navbar-item is-tab" :to="{ name: 'category', params: { id: 'mobile' } }" exact>Mobile</router-link>
       <router-link class="navbar-item is-tab" to="/login" exact>Login</router-link>
     </div>
   </nav>
