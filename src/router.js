@@ -29,12 +29,16 @@ const router = new VueRouter({
   // whenever /login is selected. this can be resolved using exact match.
   routes: [
     {
-      path: '/',
+      path: '/category/front-end',
       component: Category
     },
     {
       path: '/login',
       component: Login
+    },
+    {
+      path: '/',
+      redirect: '/category/front-end'
     }
   ]
 })

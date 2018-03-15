@@ -18,7 +18,7 @@
       <!-- for example consider /about and /about/contact . In this case if you havent used the 'exact' attribute -->
       <!-- both /about and /about/contact are considered as active routes when /about/contact is selected and -->
       <!-- displays the content of the route depending on which route is resolved at the end. Which is not desirable -->
-      <router-link class="navbar-item is-tab" to="/" exact>Home</router-link>
+      <router-link class="navbar-item is-tab" to="/category/front-end" exact>Home</router-link>
       <router-link class="navbar-item is-tab" to="/login" exact>Login</router-link>
     </div>
   </nav>
