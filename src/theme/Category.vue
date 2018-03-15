@@ -2,7 +2,19 @@
   <div class="columns">
     <div class="column is-one-third" v-for="post in posts" v-bind:key="post.id">
       <!-- :post is the name of the attribute of the component app-post -->
-      <app-post :post="post"></app-post>
+      <app-post :link="post.link">
+        <!-- In some situations we can get away with passing data to the custom componenet
+        however in some situations we may want to have more control over the child elements
+        one way to do it is to have flags within the propeties passed to the custom element
+        and use the flag to switch the content. But this will result in a large template full of
+        flag checks.
+        Other way to solve it is by using slot. Slot is a reseved keyword in vue. You can declare
+        the custom template using a slot attribute and matching the name of the slot within the
+        custom component template to make sure the rendered DOM elements are dispalyed
+        In this case we have two slots, one for title and other for content.-->
+        <h3 slot="title">{{ post.title }}</h3>
+        <span slot="content">{{ post.content }}</span>
+      </app-post>
     </div>
   </div>
 </template>
