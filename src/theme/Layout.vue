@@ -3,7 +3,8 @@
     <app-header></app-header>
     <section class="main-section section">
       <div class="container content">
-        <category></category>
+        <!-- <category></category> -->
+        <router-view></router-view> <!-- This will load the category element directly -->
       </div>
     </section>
     <app-footer></app-footer>
@@ -13,14 +14,16 @@
 <script>
   import AppHeader from './AppHeader.vue'
   import AppFooter from './AppFooter.vue'
-  import Category from './Category.vue'
+  // import Category from './Category.vue'
   // component will be exported as a JS module
   // default flag in the export makes sure that there is only one export within this file
   export default {
     components: {
       'app-header': AppHeader,
-      'app-footer': AppFooter,
-      'category': Category
+      'app-footer': AppFooter
+      // ,
+      // 'category': Category
+      // we dont need this, as we are routing to Category using out router
     }
   }
 </script>

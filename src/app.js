@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import AppLayout from './theme/Layout.vue' // within the import statement you are providing an alias for the vue component you are importing
+import router from './router.js'
 // in this files, the component within Layout.vue is aliased as AppLayout
 
 // // What does the following statement do?
@@ -71,8 +72,9 @@ import AppLayout from './theme/Layout.vue' // within the import statement you ar
 // suitable or supported in all loaders. So lets try to use babel transpiler and its dependencies, and update webpack base config file
 
 const app = new Vue({
+  router,
   ...AppLayout
 })
 
 // Now export the app variable object in JSON export so that it will be accessible to other files
-export { app }
+export { app, router }
