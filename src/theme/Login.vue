@@ -2,6 +2,8 @@
   <div class="content">
     <div v-if="isAuthenticated">
       Hello authenticated user!
+      <p>Name: {{profile.firstName}}</p>
+      <p>Favourite Sandwich: {{profile.favouriteSandwich}}</p>
       <button v-on:click="logout()" class="button is-primary">Logout</button>
     </div>
     <div v-else>
@@ -53,7 +55,23 @@
       return {
         username: '',
         password: '',
-        isAuthenticated: false
+        isAuthenticated: false,
+        profile: {}
+      }
+    },
+    // we are adding a watcher for isAuthenticated to make sure that everytime this component is
+    // invoked, we do not want to invoke the getProfile method if the isAuthenticated flag is true
+    // we want to cache the profile.
+    watch: {
+      isAuthenticated: function (val) {
+        if (val) {
+          appService.getProfile()
+            .then(profile => {
+              this.profile = profile
+            })
+        } else {
+          this.profile = {}
+        }
       }
     },
     methods: {
@@ -75,6 +93,7 @@
         window.localStorage.removeItem('loginToken')
         window.localStorage.removeItem('loginTokenExpiration')
         this.isAuthenticated = false
+        this.profile = {}
       }
     },
     created () {
