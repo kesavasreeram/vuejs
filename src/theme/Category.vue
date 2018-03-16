@@ -12,7 +12,7 @@
         the custom template using a slot attribute and matching the name of the slot within the
         custom component template to make sure the rendered DOM elements are dispalyed
         In this case we have two slots, one for title and other for content.-->
-        <h3 slot="title">{{ post.title.rendered }}</h3>
+        <h3 slot="title" v-html="post.title.rendered"></h3>
         <!-- This api returns html data along with element tags E.g (<p>Lets use ....</p>) -->
         <!-- This data needs to be sanitized before rendering them in brower -->
         <!-- This can be done by using v-html instead of binding the data using {{}} -->
@@ -23,7 +23,7 @@
 </template>
 <script>
   import Post from './Post.vue'
-  import AppService from '../app.service.js'
+  import appService from '../app.service.js'
 
   export default {
     components: {
@@ -46,7 +46,7 @@
           categoryId = 11
         }
 
-        AppService.getPosts(categoryId, 10)
+        appService.getPosts(categoryId, 10)
           .then(data => {
             this.posts = data
           })
