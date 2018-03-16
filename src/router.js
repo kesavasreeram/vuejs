@@ -1,8 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Category from './theme/Category.vue'
-import Login from './theme/Login.vue'
-import NotFound from './theme/NotFound.vue'
+
+// this will import all the components before loading the application
+// which might not be needed
+
+// import Category from './theme/Category.vue'
+// import Login from './theme/Login.vue'
+// import NotFound from './theme/NotFound.vue'
+
+// lets use lazy loading to load appropriate components when we need them.
+// this can be done by combining async loading of vue with code-splitting of webpack
+// dont forget to add the babel syntax-dynamic-import plugin when you want to use this.
+// this lazy loading is extemely usefule when the application increases in size
+
+const Category = () => import('./theme/Category.vue')
+const Login = () => import('./theme/Login.vue')
+const NotFound = () => import('./theme/NotFound.vue')
 
 // use the vue router within vue.
 Vue.use(VueRouter)
