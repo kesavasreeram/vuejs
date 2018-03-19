@@ -49,32 +49,33 @@
 </template>
 <script>
   import appService from '../app.service.js'
-  import eventBus from '../event-bus.js'
+  import { mapGetters } from 'vuex'
 
   export default {
     data () {
       return {
         username: '',
         password: '',
-        isAuthenticated: false,
         profile: {}
       }
+    },
+    computed: {
+      ...mapGetters(['isAuthenticated'])
     },
     // we are adding a watcher for isAuthenticated to make sure that everytime this component is
     // invoked, we do not want to invoke the getProfile method if the isAuthenticated flag is true
     // we want to cache the profile.
     watch: {
-      isAuthenticated: function (val) {
-        if (val) {
-          appService.getProfile()
-            .then(profile => {
-              this.profile = profile
-            })
-        } else {
-          this.profile = {}
-        }
-        eventBus.$emit('authStatusUpdate', val)
-      }
+      // isAuthenticated: function (val) {
+      //   if (val) {
+      //     appService.getProfile()
+      //       .then(profile => {
+      //         this.profile = profile
+      //       })
+      //   } else {
+      //     this.profile = {}
+      //   }
+      // }
     },
     methods: {
       login () {

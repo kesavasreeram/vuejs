@@ -13,6 +13,20 @@ const stateStore = new Vuex.Store({
     isAuthenticated: (state) => {
       return state.isAuthenticated
     }
+  },
+  actions: {
+    logout (context) {
+      context.commit('logout') // commit command will create a mutation, which will update the state
+    }
+  },
+  mutations: {
+    logout (state) {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('loginToken', null)
+        window.localStorage.setItem('loginTokenExpiration', null)
+      }
+      state.isAuthenticated = false
+    }
   }
 })
 
