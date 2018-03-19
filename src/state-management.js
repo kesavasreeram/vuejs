@@ -8,7 +8,12 @@ const state = {
 }
 
 const stateStore = new Vuex.Store({
-  state
+  state,
+  getters: { // getters is a reserved property which act as a computed property
+    isAuthenticated: (state) => {
+      return state.isAuthenticated
+    }
+  }
 })
 
 export default stateStore

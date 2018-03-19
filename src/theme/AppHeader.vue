@@ -37,18 +37,11 @@
   </nav>
 </template>
 <script>
-  import eventBus from '../event-bus.js'
+  import { mapGetters } from 'vuex' // maps store getters to local computed properties
 
   export default {
-    data () {
-      return {
-        isAuthenticated: false
-      }
-    },
-    created () {
-      eventBus.$on('authStatusUpdate', isAuthenticated => {
-        this.isAuthenticated = isAuthenticated
-      })
+    computed: {
+      ...mapGetters(['isAuthenticated'])
     }
   }
 </script>
