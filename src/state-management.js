@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import appService from './app.service.js'
+import postsModule from './theme/Post.module.js'
 
 Vue.use(Vuex)
 
@@ -9,6 +10,9 @@ const state = {
 }
 
 const stateStore = new Vuex.Store({
+  modules: {
+    postsModule
+  },
   state,
   getters: { // getters is a reserved property which act as a computed property
     isAuthenticated: (state) => {
@@ -40,8 +44,8 @@ const stateStore = new Vuex.Store({
     },
     logout (state) {
       if (typeof window !== 'undefined') {
-        window.localStorage.setItem('loginToken', null)
-        window.localStorage.setItem('loginTokenExpiration', null)
+        window.localStorage.removeItem('loginToken')
+        window.localStorage.removeItem('loginTokenExpiration')
       }
       state.isAuthenticated = false
     }

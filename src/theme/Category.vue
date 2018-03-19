@@ -23,39 +23,31 @@
 </template>
 <script>
   import Post from './Post.vue'
-  import appService from '../app.service.js'
+  import { mapGetters } from 'vuex'
 
   export default {
     components: {
       'app-post': Post
     },
-    data () {
-      return {
-        // vue js exposes the router through $route which can be accessed through this.$route
-        // using this route object you can navigate to another route using this.$route.push(<route>)
-        // or access the parameters within route using this.$route.params
-        id: this.$route.params.id,
-        posts: []
-      }
+    computed: {
+      ...mapGetters('postsModule', ['posts'])
     },
     methods: {
       loadPosts () {
         let categoryId = 2
 
-        if (this.id === 'mobile') {
+        if (this.$route.params.id === 'mobile') {
           categoryId = 11
         }
-
-        appService.getPosts(categoryId, 10)
-          .then(data => {
-            this.posts = data
-          })
+        this.$store.dispatch('postsModule/updateCategory', {
+          categoryId,
+          pageSize: 10
+        })
       }
     },
     watch: {
       '$route' (to, from) {
         if (to.params.id !== this.id) {
-          this.id = to.params.id
           this.loadPosts()
         }
       }
