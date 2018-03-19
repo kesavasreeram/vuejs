@@ -2,8 +2,6 @@
   <div class="content">
     <div v-if="isAuthenticated">
       Hello authenticated user!
-      <p>Name: {{profile.firstName}}</p>
-      <p>Favourite Sandwich: {{profile.favouriteSandwich}}</p>
       <button v-on:click="logout()" class="button is-primary">Logout</button>
     </div>
     <div v-else>
@@ -48,66 +46,33 @@
   </div>
 </template>
 <script>
-  import appService from '../app.service.js'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     data () {
       return {
         username: '',
-        password: '',
-        profile: {}
+        password: ''
       }
     },
     computed: {
       ...mapGetters(['isAuthenticated'])
     },
-    // we are adding a watcher for isAuthenticated to make sure that everytime this component is
-    // invoked, we do not want to invoke the getProfile method if the isAuthenticated flag is true
-    // we want to cache the profile.
-    watch: {
-      // isAuthenticated: function (val) {
-      //   if (val) {
-      //     appService.getProfile()
-      //       .then(profile => {
-      //         this.profile = profile
-      //       })
-      //   } else {
-      //     this.profile = {}
-      //   }
-      // }
-    },
     methods: {
-      login () {
-        appService.login({
-          username: this.username,
-          password: this.password
-        })
-          .then((data) => {
-            window.localStorage.setItem('loginToken', data.token)
-            window.localStorage.setItem('loginTokenExpiration', data.expiration)
-            this.isAuthenticated = true
-            this.username = ''
-            this.password = ''
+      ...mapActions({
+        login () {
+          this.$store.dispatch('login', {
+            username: this.username,
+            password: this.password
           })
-          .catch(() => window.alert('Could not login!!'))
-      },
-      logout () {
-        window.localStorage.removeItem('loginToken')
-        window.localStorage.removeItem('loginTokenExpiration')
-        this.isAuthenticated = false
-        this.profile = {}
-      }
-    },
-    created () {
-      let expiration = window.localStorage.getItem('loginTokenExpiration')
-      var timeStampInSecs = new Date().getTime() / 1000
-
-      if (this.isAuthenticated && expiration !== null && (parseInt(expiration) - timeStampInSecs > 0)) {
-        this.isAuthenticated = true
-      } else {
-        this.isAuthenticated = false
-      }
+            .then(() => {
+              this.username = ''
+              this.password = ''
+            })
+        },
+        logout: 'logout' // bind logout method in this component to trigger this.$store.dispatch('logout')
+        // which will in-turn trigger logout action
+      })
     }
   }
 </script>
