@@ -49,6 +49,7 @@
 </template>
 <script>
   import appService from '../app.service.js'
+  import eventBus from '../event-bus.js'
 
   export default {
     data () {
@@ -72,6 +73,7 @@
         } else {
           this.profile = {}
         }
+        eventBus.$emit('authStatusUpdate', val)
       }
     },
     methods: {
