@@ -13,9 +13,10 @@ const actions = {
   updateCategory (context, params) {
     let categoryId = params.categoryId
     let pageSize = params.pageSize
-    appService.getPosts(categoryId, pageSize)
+
+    return appService.getPosts(categoryId, pageSize)
       .then(data => {
-        context.commit('updateCategory', {categoryId, posts: data})
+        context.commit('updateCategory', { categoryId, posts: data })
       })
   }
 }

@@ -75,8 +75,8 @@ import store from './state-management.js'
 
 const app = new Vue({
   router,
-  ...AppLayout,
-  store // it has to be named as store. Object with any other name will not be processed.
+  ...AppLayout, // it has to be named as store. Object with any other name will not be processed.
+  store
 })
 
 // Now export the app variable object in JSON export so that it will be accessible to other files

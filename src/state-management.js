@@ -27,7 +27,9 @@ const stateStore = new Vuex.Store({
             context.commit('login', data)
             resolve()
           })
-          .catch(() => window.alert('Could not login!!'))
+          .catch(() => {
+            if (typeof window !== 'undefined') { window.alert('Could not login!') }
+          })
       })
     },
     logout (context) {
@@ -58,7 +60,7 @@ if (typeof window !== 'undefined') {
     let expiration = window.localStorage.getItem('loginTokenExpiration')
     var timeStampInSecs = new Date().getTime() / 1000
 
-    if (this.isAuthenticated && expiration !== null && (parseInt(expiration) - timeStampInSecs > 0)) {
+    if (state.isAuthenticated && expiration !== null && (parseInt(expiration) - timeStampInSecs > 0)) {
       stateStore.state.isAuthenticated = true
     } else {
       stateStore.state.isAuthenticated = false

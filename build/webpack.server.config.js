@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const base = require('./webpack.base.config')
 const nodeExternals = require('webpack-node-externals')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 
 const config = Object.assign({}, base, {
   entry: path.resolve(__dirname, '../src/server-entry.js'),
@@ -17,7 +17,7 @@ const config = Object.assign({}, base, {
     whitelist: /\.css$/
   }),
   plugins: [
-    new ExtractTextPlugin('server/styles.css')
+    new ExtractTextWebpackPlugin('server/styles.css')
   ]
 })
 
