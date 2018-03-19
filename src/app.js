@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import AppLayout from './theme/Layout.vue' // within the import statement you are providing an alias for the vue component you are importing
 import router from './router.js'
+import stateStore from './state-management.js'
+
 // in this files, the component within Layout.vue is aliased as AppLayout
 
 // // What does the following statement do?
@@ -73,8 +75,9 @@ import router from './router.js'
 
 const app = new Vue({
   router,
-  ...AppLayout
+  ...AppLayout,
+  stateStore
 })
 
 // Now export the app variable object in JSON export so that it will be accessible to other files
-export { app, router }
+export { app, router, stateStore }
