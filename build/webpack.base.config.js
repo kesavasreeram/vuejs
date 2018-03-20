@@ -2,7 +2,8 @@ const path = require('path')
 
 const config = {
   entry: {
-    app: path.resolve(__dirname, '../src/client-entry.js')
+    app: path.resolve(__dirname, '../src/client-entry.js'),
+    vendor: ['vue', 'vue-router', 'vuex', 'axios'] // include all 3rd party library tools into a sepearate file
   },
 
   module: {
