@@ -1,9 +1,11 @@
 import appService from '../app.service.js'
 
-const state = {
+const inBrowser = typeof window !== 'undefined'
+const defaultState = {
   posts: [],
   categoryId: 0
 }
+const state = (inBrowser && window.__INITIAL_STATE__) ? window.__INITIAL_STATE__.postsModule : defaultState
 
 const getters = {
   posts: state => state.posts

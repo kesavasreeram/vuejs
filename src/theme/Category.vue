@@ -25,7 +25,23 @@
   import Post from './Post.vue'
   import { mapGetters } from 'vuex'
 
+  const fetchInitialData = (store, route) => {
+    let categoryId = 2
+
+    if (route.params.id === 'mobile') {
+      categoryId = 11
+    }
+
+    return store.dispatch('postsModule/updateCategory', {
+      categoryId,
+      pageSize: 9
+    })
+  }
+
   export default {
+    asyncData (store, route) {
+      return fetchInitialData(store, route)
+    },
     components: {
       'app-post': Post
     },
@@ -34,15 +50,7 @@
     },
     methods: {
       loadPosts () {
-        let categoryId = 2
-
-        if (this.$route.params.id === 'mobile') {
-          categoryId = 11
-        }
-        this.$store.dispatch('postsModule/updateCategory', {
-          categoryId,
-          pageSize: 10
-        })
+        fetchInitialData(this.$store, this.$route)
       }
     },
     watch: {

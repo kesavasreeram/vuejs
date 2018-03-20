@@ -3,6 +3,7 @@ const fs = require('fs')                    // for file system
 const path = require('path')
 const expressServer = express()
 const { createBundleRenderer } = require('vue-server-renderer')
+const serialize = require('serialize-javascript')
 let renderer
 
 const indexHTML = (() => {
@@ -19,11 +20,14 @@ require('./build/dev-server')(expressServer, bundle => {
 })
 
 expressServer.get('*', (request, response) => {
-  renderer.renderToString({ url: request.url }, (err, html) => {
+  let context = { url: request.url }
+
+  renderer.renderToString(context, (err, html) => {
     if (err) {
       return response.status(500).send('Sever Error')
     }
     html = indexHTML.replace('{{ APP }}', html)
+    html = html.replace('{{ STATE }}', `<script>window.__INITIAL_STATE__=${serialize(context.initialState, { isJSON: true })}</script>`)
     response.write(html)
     response.end()
   })
